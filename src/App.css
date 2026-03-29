@@ -27,22 +27,43 @@
   animation: pageFadeIn 260ms ease-out;
 }
 
-.AudioControls {
+.AuthLoading {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.GuestAudioControls {
   position: fixed;
   right: 16px;
   bottom: 16px;
   z-index: 3;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+  max-width: min(100vw - 32px, 360px);
   padding: 10px 12px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(167, 243, 208, 0.7);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(167, 243, 208, 0.75);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
 
-.AudioButton {
+.GuestAudioTitle {
+  width: 100%;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #0b1220;
+  letter-spacing: 0.02em;
+}
+
+.GuestAudioMute {
   border: none;
   border-radius: 9px;
   padding: 8px 10px;
@@ -53,14 +74,19 @@
   background: #a7f3d0;
 }
 
-.AudioLabel {
+.GuestAudioMute:hover {
+  filter: brightness(0.98);
+}
+
+.GuestAudioVolLabel {
   font-size: 0.85rem;
   font-weight: 700;
   color: #0b1220;
 }
 
-.AudioSlider {
-  width: 110px;
+.GuestAudioSlider {
+  flex: 1;
+  min-width: 110px;
 }
 
 @keyframes pageFadeIn {

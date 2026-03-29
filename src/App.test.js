@@ -1,11 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
-test("renders Ellie’s Simple App login UI", () => {
+test('renders Soothing Space login UI', () => {
   render(<App />);
 
   expect(
-    screen.getByRole('heading', { name: /Ellie's Simple App/i })
+    screen.getByRole('heading', { name: /Soothing Space/i })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText(/your personal space for soothing sounds/i)
   ).toBeInTheDocument();
 
   expect(screen.getByRole('heading', { name: /log in/i })).toBeInTheDocument();

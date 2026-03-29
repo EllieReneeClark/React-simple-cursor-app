@@ -1,0 +1,187 @@
+.DashboardPage {
+  min-height: 100vh;
+  padding: 0 16px;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.DashboardLayout {
+  width: 100%;
+  max-width: 420px;
+}
+
+.DashboardHeader {
+  margin: 0 auto 22px;
+  text-align: center;
+}
+
+.DashboardTitle {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0b1220;
+  letter-spacing: 0.2px;
+  text-shadow: 0 6px 22px rgba(11, 18, 32, 0.15);
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(167, 243, 208);
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  box-shadow:
+    0 10px 26px rgba(167, 243, 208, 0.35),
+    0 6px 18px rgba(11, 18, 32, 0.1);
+}
+
+.DashboardTagline {
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #f0c4d4;
+  text-shadow: 0 1px 3px rgba(40, 20, 30, 0.35);
+  line-height: 1.4;
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.DashboardCard {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  border: 1px solid rgba(167, 243, 208, 0.65);
+}
+
+.DashboardCard h2 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.DashboardWelcome {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.DashboardEmail {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  color: rgba(17, 24, 39, 0.85);
+}
+
+.AmbientSoundField {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(167, 243, 208, 0.55);
+  background: rgba(167, 243, 208, 0.12);
+}
+
+.AmbientSoundLegend {
+  padding: 0 6px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #7c3aed !important;
+  position: relative;
+  top: 0;
+}
+
+.AmbientSoundHint {
+  margin: 0 0 14px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: rgba(17, 24, 39, 0.75);
+}
+
+.SoundLayer {
+  margin-bottom: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(167, 243, 208, 0.45);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.SoundLayer:last-of-type {
+  margin-bottom: 0;
+}
+
+.SoundLayerHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.SoundLayerTitle {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0b1220;
+}
+
+.SoundLayerSelect {
+  flex: 1;
+  min-width: 140px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(17, 24, 39, 0.2);
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: #fff;
+}
+
+.SoundLayerControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+
+.SoundLayerMute {
+  border: none;
+  border-radius: 9px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #0b1220;
+  background: #a7f3d0;
+}
+
+.SoundLayerMute:hover {
+  filter: brightness(0.98);
+}
+
+.SoundLayerVolLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0b1220;
+}
+
+.SoundLayerSlider {
+  flex: 1;
+  min-width: 120px;
+  max-width: 220px;
+}
+
+.DashboardSignOut {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(17, 24, 39, 0.2);
+  background: rgba(216, 167, 183, 0.45);
+  color: #0b1220;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.DashboardSignOut:hover {
+  filter: brightness(0.97);
+}

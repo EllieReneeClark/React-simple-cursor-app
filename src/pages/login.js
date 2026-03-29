@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, isFirebaseConfigured } from '../firebase';
+import { mapFirebaseAuthError } from '../utils/mapFirebaseAuthError';
 import './login.css';
 
 // Top-level login page component for the app
@@ -9,16 +12,15 @@ function LoginPage({ onNavigateToSignup }) {
 
   // Track the current error message (if any) and whether we’ve “logged in”
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   // Handle the form submit button click
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     // Stop the browser from doing a full page reload
     e.preventDefault();
 
     // Clear any previous messages before re-validating
     setError('');
-    setSuccess(false);
 
     // Basic validation rules:
     // 1. Email must not be empty
@@ -41,14 +43,32 @@ function LoginPage({ onNavigateToSignup }) {
       return;
     }
 
-    // If all checks pass, pretend the login succeeded
-    setSuccess(true);
+    if (!isFirebaseConfigured || !auth) {
+      setError(
+        'Firebase is not configured. Copy .env.example to .env.local and add your Firebase web app keys.'
+      );
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      await signInWithEmailAndPassword(auth, trimmedEmail, password);
+    } catch (err) {
+      setError(mapFirebaseAuthError(err));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <div className="LoginPage">
       <div className="LoginLayout">
-        <h1 className="SiteTitle">Ellie's Simple App</h1>
+        <header className="SiteHeader">
+          <h1 className="SiteTitle">Soothing Space</h1>
+          <p className="SiteTagline">
+            Your personal space for soothing sounds
+          </p>
+        </header>
 
         <div className="LoginCard">
           <h2>Log in</h2>
@@ -86,14 +106,12 @@ function LoginPage({ onNavigateToSignup }) {
               </div>
             )}
 
-            {success && (
-              <div className="Alert AlertSuccess" role="status">
-                Logged in successfully (demo).
-              </div>
-            )}
-
-            <button type="submit" className="PrimaryButton">
-              Log in
+            <button
+              type="submit"
+              className="PrimaryButton"
+              disabled={submitting}
+            >
+              {submitting ? 'Signing in…' : 'Log in'}
             </button>
 
             <button

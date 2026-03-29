@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth, isFirebaseConfigured } from '../firebase';
+import { mapFirebaseAuthError } from '../utils/mapFirebaseAuthError';
 import './Signup.css';
 
 function SignupPage({ onNavigateToLogin }) {
@@ -7,8 +10,9 @@ function SignupPage({ onNavigateToLogin }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess(false);
@@ -37,13 +41,43 @@ function SignupPage({ onNavigateToLogin }) {
       return;
     }
 
-    setSuccess(true);
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters.');
+      return;
+    }
+
+    if (!isFirebaseConfigured || !auth) {
+      setError(
+        'Firebase is not configured. Copy .env.example to .env.local and add your Firebase web app keys.'
+      );
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const credential = await createUserWithEmailAndPassword(
+        auth,
+        trimmedEmail,
+        password
+      );
+      await updateProfile(credential.user, { displayName: trimmedName });
+      setSuccess(true);
+    } catch (err) {
+      setError(mapFirebaseAuthError(err));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <div className="SignupPage">
       <div className="SignupLayout">
-        <h1 className="SiteTitle">Ellie's Simple App</h1>
+        <header className="SiteHeader">
+          <h1 className="SiteTitle">Soothing Space</h1>
+          <p className="SiteTagline">
+            Your personal space for soothing sounds
+          </p>
+        </header>
 
         <div className="SignupCard">
           <h2>Sign up</h2>
@@ -96,12 +130,16 @@ function SignupPage({ onNavigateToLogin }) {
 
             {success && (
               <div className="Alert AlertSuccess" role="status">
-                Account created successfully (demo).
+                Account created successfully.
               </div>
             )}
 
-            <button type="submit" className="PrimaryButton">
-              Sign up
+            <button
+              type="submit"
+              className="PrimaryButton"
+              disabled={submitting}
+            >
+              {submitting ? 'Creating account…' : 'Sign up'}
             </button>
 
             <button
