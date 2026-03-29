@@ -77,9 +77,9 @@ function Dashboard({
           <fieldset className="AmbientSoundField">
             <legend className="AmbientSoundLegend">Ambient layers</legend>
             <p className="AmbientSoundHint">
-              Up to three sounds can play together (one per layer). Each layer
-              uses a different sound—changing a layer may adjust another so
-              tracks stay unique.
+              Layers start silent—raise volume on any layer to hear it. Up to
+              three sounds can play together (one per layer). Changing a layer
+              may adjust another so tracks stay unique.
             </p>
 
             {layers.map(

@@ -34,9 +34,9 @@ function App() {
     b: 'ocean',
     c: 'watermello',
   });
-  const [volumeA, setVolumeA] = useState(0.3);
-  const [volumeB, setVolumeB] = useState(0.3);
-  const [volumeC, setVolumeC] = useState(0.3);
+  const [volumeA, setVolumeA] = useState(0);
+  const [volumeB, setVolumeB] = useState(0);
+  const [volumeC, setVolumeC] = useState(0);
   const [mutedA, setMutedA] = useState(false);
   const [mutedB, setMutedB] = useState(false);
   const [mutedC, setMutedC] = useState(false);
@@ -196,9 +196,9 @@ function App() {
           <audio
             ref={audioRefA}
             key={tracks.a}
-            autoPlay
             loop
             muted={mutedA}
+            volume={volumeA}
             aria-hidden="true"
           >
             <source src={AMBIENT_TRACK_SRC[tracks.a]} type="audio/mpeg" />
@@ -206,9 +206,9 @@ function App() {
           <audio
             ref={audioRefB}
             key={tracks.b}
-            autoPlay
             loop
             muted={mutedB}
+            volume={volumeB}
             aria-hidden="true"
           >
             <source src={AMBIENT_TRACK_SRC[tracks.b]} type="audio/mpeg" />
@@ -216,9 +216,9 @@ function App() {
           <audio
             ref={audioRefC}
             key={tracks.c}
-            autoPlay
             loop
             muted={mutedC}
+            volume={volumeC}
             aria-hidden="true"
           >
             <source src={AMBIENT_TRACK_SRC[tracks.c]} type="audio/mpeg" />
