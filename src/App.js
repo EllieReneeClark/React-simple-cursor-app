@@ -161,7 +161,7 @@ function App() {
     if (!backgroundSrcById[selectedBackgroundId]) {
       setSelectedBackgroundId(DEFAULT_BACKGROUND.id);
     }
-  }, [backgroundSrcById, selectedBackgroundId, DEFAULT_BACKGROUND.id]);
+  }, [backgroundSrcById, selectedBackgroundId]);
 
   const handleSignOut = async () => {
     if (auth) {
