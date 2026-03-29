@@ -1,8 +1,38 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test("renders Ellie’s Simple App login UI", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(
+    screen.getByRole('heading', { name: /Ellie's Simple App/i })
+  ).toBeInTheDocument();
+
+  expect(screen.getByRole('heading', { name: /log in/i })).toBeInTheDocument();
+  expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+  expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+  expect(
+    screen.getByRole('button', { name: /log in/i })
+  ).toBeInTheDocument();
+});
+
+test('shows validation error on submit', () => {
+  render(<App />);
+  fireEvent.click(screen.getByRole('button', { name: /log in/i }));
+  expect(screen.getByText(/email is required/i)).toBeInTheDocument();
+});
+
+test('navigates from login to signup and back', () => {
+  render(<App />);
+
+  fireEvent.click(
+    screen.getByRole('button', { name: /don't have an account\? sign up/i })
+  );
+  expect(screen.getByRole('heading', { name: /sign up/i })).toBeInTheDocument();
+  expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
+
+  fireEvent.click(
+    screen.getByRole('button', { name: /already have an account\? back to log in/i })
+  );
+  expect(screen.getByRole('heading', { name: /log in/i })).toBeInTheDocument();
 });

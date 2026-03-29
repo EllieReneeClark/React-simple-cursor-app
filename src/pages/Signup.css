@@ -1,0 +1,106 @@
+.SignupPage {
+  min-height: 100vh;
+  padding: 0 16px;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SignupLayout {
+  width: 100%;
+  max-width: 420px;
+}
+
+.SiteTitle {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0b1220;
+  letter-spacing: 0.2px;
+}
+
+.SignupCard {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  border: 1px solid rgba(167, 243, 208, 0.65);
+}
+
+.SignupCard h2 {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.SignupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.Field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.Field input {
+  padding: 12px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(17, 24, 39, 0.18);
+  font-size: 1rem;
+  outline: none;
+}
+
+.Field input:focus {
+  border-color: #34d399;
+  box-shadow: 0 0 0 4px rgba(167, 243, 208, 0.45);
+}
+
+.Alert {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(245, 158, 11, 0.55);
+  background: rgba(255, 247, 237, 0.95);
+  font-weight: 700;
+}
+
+.AlertSuccess {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(236, 253, 245, 0.95);
+}
+
+.PrimaryButton {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #a7f3d0;
+  color: #0b1220;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.PrimaryButton:hover {
+  filter: brightness(0.98);
+}
+
+.SecondaryButton {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(17, 24, 39, 0.25);
+  background: rgba(216, 167, 183, 0.35);
+  color: #0b1220;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.SecondaryButton:hover {
+  filter: brightness(0.97);
+}
+
