@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, isFirebaseConfigured } from '../firebase';
+import { fetchRandomAnimeQuote } from '../utils/animeQuote';
 import { mapFirebaseAuthError } from '../utils/mapFirebaseAuthError';
 import './login.css';
 
@@ -13,6 +14,28 @@ function LoginPage({ onNavigateToSignup }) {
   // Track the current error message (if any) and whether we’ve “logged in”
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [quote, setQuote] = useState('');
+  const [character, setCharacter] = useState('');
+  const [anime, setAnime] = useState('');
+  const [quoteLoading, setQuoteLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    setQuoteLoading(true);
+    fetchRandomAnimeQuote()
+      .then((data) => {
+        if (cancelled || !data) return;
+        setQuote(data.quote);
+        setCharacter(data.character);
+        setAnime(data.anime);
+      })
+      .finally(() => {
+        if (!cancelled) setQuoteLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Handle the form submit button click
   const handleSubmit = async (e) => {
@@ -122,6 +145,22 @@ function LoginPage({ onNavigateToSignup }) {
               Don&apos;t have an account? Sign up
             </button>
           </form>
+        </div>
+
+        <div className="AnimeQuote" aria-live="polite">
+          {quoteLoading && (
+            <p className="AnimeQuote--loading">Loading quote…</p>
+          )}
+          {!quoteLoading && quote && (
+            <>
+              <blockquote className="AnimeQuoteText">&ldquo;{quote}&rdquo;</blockquote>
+              <p className="AnimeQuoteFooter">
+                <span className="AnimeQuoteCharacter">{character}</span>
+                <span className="AnimeQuoteSep"> · </span>
+                <span className="AnimeQuoteAnime">{anime}</span>
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>
